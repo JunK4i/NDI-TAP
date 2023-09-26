@@ -2,7 +2,6 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 
 const LoginSignupModal = ({ type, isOpen, handleClickClose, handleLogin }) => {
-    const [modalType, setModalType] = useState(type);
     const renderLoginModal = () => {
         return (
             <div id="authentication-modal" tabIndex="-1" className="flex justify-end fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -16,7 +15,7 @@ const LoginSignupModal = ({ type, isOpen, handleClickClose, handleLogin }) => {
                         </button>
                         <div className="lg:px-8 px-6 py-6">
                             <h3 className="mb-4 text-xl font-medium text-gray-900">Log in</h3>
-                            <span className="text-sm text-gray-900"> for testing, username:tom, password:asdf inspect to see accessToken logged</span>
+                            <p className="pb-3 text-sm text-gray-900"> for testing, username:tom, password:asdf. Inspect to see accessToken logged <br></br></p>
                             <form className="space-y-6" action="#" onSubmit={handleLogin}>
                                 <div>
                                     <label htmlFor="username" className=" block mb-2 text-sm font-medium text-gray-900">Your username</label>
@@ -28,13 +27,13 @@ const LoginSignupModal = ({ type, isOpen, handleClickClose, handleLogin }) => {
                                 </div>
                                 <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Login to your account</button>
                                 <div className="text-sm font-medium text-gray-500">
-                                    Not registered? <a href="#" className="hover:underline text-blue-700" onClick={setModalType("signup")}>Create account</a>
+                                    Not registered? <a href="#" className="hover:underline text-blue-700">Create account</a>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 
@@ -73,9 +72,10 @@ const LoginSignupModal = ({ type, isOpen, handleClickClose, handleLogin }) => {
         return <></>;
     }
 
+    console.log(type)
     return (
         <>
-            {modalType === "login" ? renderLoginModal() : renderSignupModal()}
+            {type === "login" ? renderLoginModal() : renderSignupModal()}
         </>
     )
 
