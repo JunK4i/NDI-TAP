@@ -15,7 +15,8 @@ const LoginSignupModal = ({ type, isOpen, handleClickClose, handleLogin }) => {
                             <span className="sr-only">Close modal</span>
                         </button>
                         <div className="lg:px-8 px-6 py-6">
-                            <h3 className="mb-4 text-xl font-medium text-gray-900">Sign in</h3>
+                            <h3 className="mb-4 text-xl font-medium text-gray-900">Log in</h3>
+                            <span className="text-sm text-gray-900"> for testing, username:tom, password:asdf inspect to see accessToken logged</span>
                             <form className="space-y-6" action="#" onSubmit={handleLogin}>
                                 <div>
                                     <label htmlFor="username" className=" block mb-2 text-sm font-medium text-gray-900">Your username</label>
