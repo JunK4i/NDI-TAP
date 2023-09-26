@@ -2,7 +2,8 @@
 import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import NavBar from "../components/NavBar"
-
+import Carousel from "../components/Carousel"
+import Gallery from "../components/Gallery"
 const Home = () => {
     return (
         <div className="bg-red flex flex-col w-full h-screen bg-white">
@@ -10,7 +11,12 @@ const Home = () => {
                 <NavBar />
             </div>
             <div className="flex-auto">
-                <h1>Home</h1>
+                <div>
+                    <Carousel />
+                </div>
+                <div>
+                    <Gallery />
+                </div>
             </div>
         </div>
     )

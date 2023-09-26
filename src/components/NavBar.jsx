@@ -2,11 +2,32 @@
 import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import logo from '../assets/logo-no-background.svg'
+import LoginSignupModal from "./LoginSignupModal"
 
 const NavBar = () => {
-
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalType, setModalType] = useState("login");
     const handleSearch = () => {
 
+    }
+
+    const handleToggleModal = () => {
+        setModalIsOpen(!modalIsOpen);
+    }
+
+    const handleClickLogin = () => {
+        setModalType("login");
+        setModalIsOpen(true);
+    }
+
+    const handleClickSignup = () => {
+        setModalType("signup");
+        setModalIsOpen(true);
+    }
+
+    // handle login, signup, logout and auth are not completed due to lack of time.
+    const handleLogin = () => {
+        return
     }
 
     return (
@@ -26,15 +47,18 @@ const NavBar = () => {
                     </form>
                 </div>
                 <div className=" flex items-center justify-end flex-auto gap-1 text-sm font-bold text-gray-900">
-                    <div className="rounded-3xl hover:bg-gray-300 px-3 py-2 cursor-pointer" onClick={useNavigate()}>
+                    <button className="rounded-3xl hover:bg-gray-300 px-3 py-2 cursor-pointer" onClick={handleClickLogin}>
                         Log in
-                    </div>
-                    <div className="rounded-3xl hover:bg-gray-300 px-3 py-2 cursor-pointer">
+                    </button>
+                    <div className="rounded-3xl hover:bg-gray-300 px-3 py-2 cursor-pointer" onClick={handleClickSignup}>
                         Sign up
                     </div>
+                    <div className="relative">
+                        <LoginSignupModal type={modalType} isOpen={modalIsOpen} handleClose={handleToggleModal} />
+                    </div>
                 </div>
-
             </nav>
+
         </header>
     )
 
