@@ -51,3 +51,9 @@ The configuration for Caddy is called a Caddyfile, and you can edit that file to
 - As imported component libraries are often opiniated and hinder flexbility and adaptability in projects
 - Using Flowbite, you have the benefits of flexibility and at the same time the ease of using pre-built components, best of both worlds!
 - Bonus benefit of the ability to learn how to build encapsulated and reusable components as time goes on!
+
+# Completed features:
+
+- Homepage layout and corresponding components
+- API for register, login, replaceToken, logout, getUserProfile, updateUserProfile, deleteUserProfile completed
+- Integrated frontend with login
