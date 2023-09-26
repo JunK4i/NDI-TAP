@@ -3,10 +3,12 @@ import { useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import logo from '../assets/logo-no-background.svg'
 import LoginSignupModal from "./LoginSignupModal"
+import axios from "axios"
 
 const NavBar = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modalType, setModalType] = useState("login");
+    const [loading, setLoading] = useState(false);
     const handleSearch = () => {
 
     }
@@ -25,15 +27,39 @@ const NavBar = () => {
         setModalIsOpen(true);
     }
 
-    // handle login, signup, logout and auth are not completed due to lack of time.
-    const handleLogin = () => {
-        return
+    // handle login, signup, logout and auth are not completed completely due to lack of time. and relative complexity
+    // just to demo connection to backend, username: "tom" and password:"asdf" will return accessToken and refreshToken in cookie
+    const handleLogin = (e) => {
+        console.log('submitting')
+        e.preventDefault();
+        const form = e.target;
+        const submit = {
+            "username": form[0].value,
+            "password": form[1].value,
+        }
+        postLogin(submit);
+    }
+    const postLogin = async (submit) => {
+        setLoading(true);
+        try {
+            const response = await axios(`https://expressjs-mongoose-production-30d5.up.railway.app/auth`, {
+                headers: { "Content-Type": "application/json" },
+                credentials: 'include',
+                method: 'POST',
+                data: submit,
+            });
+            console.log(response);
+        } catch (error) {
+            console.log(error)
+        } finally {
+            setLoading(false);
+        }
     }
 
     return (
         <header className="border-red-900/10 w-28ll h-16 bg-white border-b">
             <nav className="flex flex-row items-center justify-between h-full">
-                <div className="flex items-center justify-between flex-initial h-full gap-2">
+                <div className="flex items-center justify-between flex-initial h-full gap-5 px-3 py-1">
                     <img className="h-3/4" src={logo} alt="sg events logo">
                     </img>
                     <form className="relative" onSubmit={handleSearch()}>
@@ -54,7 +80,7 @@ const NavBar = () => {
                         Sign up
                     </div>
                     <div className="relative">
-                        <LoginSignupModal type={modalType} isOpen={modalIsOpen} handleClose={handleToggleModal} />
+                        <LoginSignupModal type={modalType} isOpen={modalIsOpen} handleClickClose={handleToggleModal} handleLogin={handleLogin} />
                     </div>
                 </div>
             </nav>
