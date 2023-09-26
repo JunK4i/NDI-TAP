@@ -44,7 +44,7 @@ const NavBar = () => {
         try {
             const response = await axios(`https://expressjs-mongoose-production-30d5.up.railway.app/auth`, {
                 headers: { "Content-Type": "application/json" },
-                credentials: 'include',
+                withCredentials: true,
                 method: 'POST',
                 data: submit,
             });
